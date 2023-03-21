@@ -10,11 +10,19 @@ public class Cliente {
     //Construtor
     public Cliente(String _Nome, String _Cpf, String _DataNascimento, int _Idade, String _Endereco)
     {
-        cpf = validarCPF(_Cpf);
         nome = _Nome;
         dataNascimento = _DataNascimento;
         idade = _Idade;
         endereco = _Endereco;
+        boolean cpf_valido = validarCPF(_Cpf);
+        if (cpf_valido)
+        {
+            cpf = _Cpf.replaceAll("[^0-9]", "");
+        }
+        else
+        {
+            cpf = "CPF inválido";
+        }
     }
 
     //Getters e Setters
@@ -74,14 +82,14 @@ public class Cliente {
         return "\n---CLIENTE---\nNome: %s\nCPF: %s\nData de nascimento: %s\nIdade: %d anos\nEndereco: %s".formatted(nome, cpf, dataNascimento, idade, endereco);
     }
 
-    private String validarCPF(String _Cpf)
+    private boolean validarCPF(String _Cpf)
     {
         int soma_1 = 0, soma_2 = 0;
         char verificador_1, verificador_2;
         String cpf_numerico = _Cpf.replaceAll("[^0-9]", "");
         if (cpf_numerico.length() != 11)
         {
-            return "CPF inválido";
+            return false;
         }
         for (int index = 0; index < 9; index++)
         {
@@ -105,14 +113,14 @@ public class Cliente {
             verificador_2 = (char)(11 - soma_2 % 11 + 48);
         }
         if (verificador_1 != cpf_numerico.charAt(9) || verificador_2 != cpf_numerico.charAt(10))
-            return "CPF inválido";
+            return false;
         for (int index = 1; index < cpf_numerico.length(); index++)
         {
             if (cpf_numerico.charAt(index) != cpf_numerico.charAt(index - 1))
             {
-                return cpf_numerico;
+                return true;
             }
         }
-        return "CPF inválido";
+        return false;
     }
 }

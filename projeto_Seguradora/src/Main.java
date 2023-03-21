@@ -12,5 +12,8 @@ public class Main {
         
         Veiculo v1 = new Veiculo("ABCD-1234", "Fiat", "Uno");
         System.out.println(v1.ToString());
+
+        c1.setNome("Tiago");
+        System.out.println(c1.ToString());
     }
 }
