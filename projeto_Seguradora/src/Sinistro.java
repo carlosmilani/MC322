@@ -1,8 +1,7 @@
-import java.util.concurrent.ThreadLocalRandom;
-
 public class Sinistro {
 
     //Propriedades
+    private static int count = 0;
     private int id;
     private String data;
     private String endereco;
@@ -12,7 +11,8 @@ public class Sinistro {
     {
         data = _Data;
         endereco = _Endereco;
-        id = gerarID();
+        ++count;
+        id = count;
     }
 
     //Getters e Setters
@@ -50,10 +50,5 @@ public class Sinistro {
     public String ToString()
     {
         return "\n---SINISTRO---\nID: %d\nData: %s\nEndereco: %s".formatted(id, data, endereco);
-    }
-    public int gerarID()
-    {
-        int randomId = ThreadLocalRandom.current().nextInt(1000, 10000);
-        return randomId;
     }
 }

@@ -1,6 +1,6 @@
 public class Main {
-    public static void main(String[] args) throws Exception {
-
+    public static void main(String[] args) throws Exception
+    {
         Cliente c1 = new Cliente("Carlos Eduardo", "448.939.196-01", "01/01/2003", 20, "Rua X, Campinas-SP");
         System.out.println(c1.ToString());
         
@@ -14,6 +14,7 @@ public class Main {
         System.out.println(v1.ToString());
 
         c1.setNome("Tiago");
+        c1.setCpf("fb236fb23fg32g");
         System.out.println(c1.ToString());
     }
 }
