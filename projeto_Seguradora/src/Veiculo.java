@@ -4,13 +4,15 @@ public class Veiculo {
     private String placa;
     private String marca;
     private String modelo;
+    private int anoFabricacao;
 
     //Construtor
-    public Veiculo(String _Placa, String _Marca, String _Modelo)
+    public Veiculo(String _Placa, String _Marca, String _Modelo, int _AnoFabricacao)
     {
         placa = _Placa;
         marca = _Marca;
         modelo = _Modelo;
+        anoFabricacao = _AnoFabricacao;
     }
 
     //Getters e Setters
@@ -44,9 +46,19 @@ public class Veiculo {
         modelo = _Modelo;
     }
 
+    public int getAnoFabricacao()
+    {
+        return anoFabricacao;
+    }
+
+    public void setAnoFabricacao(int _AnoFabricacao)
+    {
+        anoFabricacao = _AnoFabricacao;
+    }
+
     //Métodos
     public String ToString()
     {
-        return "\n---VEICULO---\nPlaca: %s\nMarca: %s\nModelo: %s".formatted(placa, marca, modelo);
+        return "\n---VEICULO---\nPlaca: %s\nMarca: %s\nModelo: %s\nAno de Fabricacao: %d\n".formatted(placa, marca, modelo, anoFabricacao);
     }
 }
