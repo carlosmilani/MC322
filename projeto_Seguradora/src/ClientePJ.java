@@ -3,15 +3,16 @@ import java.time.LocalDate;
 
 public class ClientePJ extends Cliente
 {
+    //Propriedades
     private final String cnpj;
     private LocalDate dataFundacao;
 
     //Construtor
-    public ClientePJ(String _Nome, String _Endereco, ArrayList<Veiculo> _ListaVeiculos, String _Cnpj, LocalDate _DataFundacao)
+    public ClientePJ(String nome, String endereco, ArrayList<Veiculo> listaVeiculos, String cnpj, LocalDate dataFundacao)
     {
-        super(_Nome, _Endereco, _ListaVeiculos);
-        cnpj = _Cnpj.replaceAll("[^0-9]", "");;
-        dataFundacao = _DataFundacao;
+        super(nome, endereco, listaVeiculos);
+        this.cnpj = cnpj.replaceAll("[^0-9]", "");;
+        this.dataFundacao = dataFundacao;
     }
 
     //Getters e Setters
@@ -25,27 +26,21 @@ public class ClientePJ extends Cliente
         return dataFundacao;
     }
 
-    public void setDataFundacao(LocalDate _DataFundacao)
+    public void setDataFundacao(LocalDate dataFundacao)
     {
-        dataFundacao = _DataFundacao;
+        this.dataFundacao = dataFundacao;
     }
 
     //Métodos
-    @Override
-    public String ToString()
+    private boolean checarDigitos(String cnpj)
     {
-        return "\n---CLIENTE---\nNome: %s\nCNPJ: %s\nEndereco: %s".formatted(getNome(), cnpj, getEndereco()); 
-    }
-
-    private boolean checarDigitos(String _Cnpj)
-    {
-        if (_Cnpj.length() != 14)
+        if (cnpj.length() != 14)
         {
             return false;
         }
-        for (int index = 1; index < _Cnpj.length(); index++)
+        for (int index = 1; index < cnpj.length(); index++)
         {
-            if (_Cnpj.charAt(0) != _Cnpj.charAt(index))
+            if (cnpj.charAt(0) != cnpj.charAt(index))
             {
                 return true;
             }
@@ -53,47 +48,53 @@ public class ClientePJ extends Cliente
         return false;
     }
 
-    private boolean calcularVerificadores(String _Cnpj)
+    private boolean calcularVerificadores(String cnpj)
     {
-        int soma_1 = 0, soma_2 = 0, array1[] = {5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2}, array2[] = {6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2};
-        char verificador_1, verificador_2;
+        int soma1 = 0, soma2 = 0, array1[] = {5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2}, array2[] = {6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2};
+        char verificador1, verificador2;
         for (int index = 0; index < 12; index++)
         {
-            soma_1 += array1[index] * (_Cnpj.charAt(index) - 48);
-            soma_2 += array2[index] * (_Cnpj.charAt(index) - 48);
+            soma1 += array1[index] * (cnpj.charAt(index) - 48);
+            soma2 += array2[index] * (cnpj.charAt(index) - 48);
         }
-        soma_2 += array2[12] * (_Cnpj.charAt(12) - 48);
-        if (soma_1 % 11 == 0 || soma_1 % 11 == 1)
+        soma2 += array2[12] * (cnpj.charAt(12) - 48);
+        if (soma1 % 11 == 0 || soma1 % 11 == 1)
         {
-            verificador_1 = '0';
+            verificador1 = '0';
         }
         else 
         {
-            verificador_1 = (char)(11 - soma_1 % 11 + 48);
+            verificador1 = (char)(11 - soma1 % 11 + 48);
         }
-        if (soma_2 % 11 == 0 || soma_2 % 11 == 1)
+        if (soma2 % 11 == 0 || soma2 % 11 == 1)
         {
-            verificador_2 = '0';
+            verificador2 = '0';
         }
         else 
         {
-            verificador_2 = (char)(11 - soma_2 % 11 + 48);
+            verificador2 = (char)(11 - soma2 % 11 + 48);
         }
-        if (verificador_1 != _Cnpj.charAt(12) || verificador_2 != _Cnpj.charAt(13))
+        if (verificador1 != cnpj.charAt(12) || verificador2 != cnpj.charAt(13))
         {
             return false;
         }
         return true;
     }
 
-    public boolean validarCNPJ(String _Cnpj)
+    public boolean validarCNPJ(String cnpj)
     {
-        boolean catorze_digitos_diferentes = checarDigitos(_Cnpj);
-        if (catorze_digitos_diferentes)
+        boolean catorzeDigitosDiferentes = checarDigitos(cnpj);
+        if (catorzeDigitosDiferentes)
         {
-            boolean digitos_verificadores = calcularVerificadores(_Cnpj);
-            return digitos_verificadores;
+            boolean digitosVerificadores = calcularVerificadores(cnpj);
+            return digitosVerificadores;
         }
         return false;
+    }
+
+    @Override
+    public String ToString()
+    {
+        return "\n---CLIENTE---\nNome: %s\nCNPJ: %s\nEndereco: %s".formatted(getNome(), cnpj, getEndereco()); 
     }
 }

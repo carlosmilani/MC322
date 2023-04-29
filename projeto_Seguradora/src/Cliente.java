@@ -1,19 +1,18 @@
 import java.util.ArrayList;
 
-public class Cliente {
-
+public class Cliente
+{
     //Propriedades
     private String nome;
     private String endereco;
-    private ArrayList<Veiculo> listaVeiculos;
-    
+    private ArrayList<Veiculo> listaVeiculos;    
 
     //Construtor
-    public Cliente(String _Nome, String _Endereco, ArrayList<Veiculo> _ListaVeiculos)
+    public Cliente(String nome, String endereco, ArrayList<Veiculo> listaVeiculos)
     {
-        nome = _Nome;
-        endereco = _Endereco;
-        listaVeiculos = _ListaVeiculos;
+        this.nome = nome;
+        this.endereco = endereco;
+        this.listaVeiculos = listaVeiculos;
     }
 
     //Getters e Setters
@@ -22,9 +21,9 @@ public class Cliente {
         return nome;
     }
 
-    public void setNome(String _Nome)
+    public void setNome(String nome)
     {
-        nome = _Nome;
+        this.nome = nome;
     }
 
     public String getEndereco()
@@ -32,9 +31,9 @@ public class Cliente {
         return endereco;
     }
 
-    public void setEndereco(String _Endereco)
+    public void setEndereco(String endereco)
     {
-        endereco = _Endereco;
+        this.endereco = endereco;
     }
 
     public ArrayList<Veiculo> getListaVeiculos()
@@ -42,9 +41,9 @@ public class Cliente {
         return listaVeiculos;
     }
 
-    public void setListaVeiculos(ArrayList<Veiculo> _ListaVeiculos)
+    public void setListaVeiculos(ArrayList<Veiculo> listaVeiculos)
     {
-        listaVeiculos = _ListaVeiculos;
+        this.listaVeiculos = listaVeiculos;
     }
 
     //Métodos

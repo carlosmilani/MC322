@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 import java.time.LocalDate;
 
-public class Seguradora {
-
+public class Seguradora
+{
     //Propriedades
     private String nome;
     private String telefone;
@@ -12,12 +12,12 @@ public class Seguradora {
     private ArrayList<Cliente> listaClientes;
 
     //Construtor
-    public Seguradora(String _Nome, String _Telefone, String _Email, String _Endereco)
+    public Seguradora(String nome, String telefone, String email, String endereco)
     {
-        nome = _Nome;
-        telefone = _Telefone;
-        email = _Email;
-        endereco = _Endereco;
+        this.nome = nome;
+        this.telefone = telefone;
+        this.email = email;
+        this.endereco = endereco;
         listaClientes = new ArrayList<Cliente>();
         listaSinistros = new ArrayList<Sinistro>();
     }
@@ -30,7 +30,7 @@ public class Seguradora {
 
     public void setNome(String _Nome)
     {
-        nome = _Nome;
+        this.nome = _Nome;
     }
 
     public String getTelefone()
@@ -40,7 +40,7 @@ public class Seguradora {
 
     public void setTelefone(String _Telefone)
     {
-        telefone = _Telefone;
+        this.telefone = _Telefone;
     }
 
     public String getEmail()
@@ -50,7 +50,7 @@ public class Seguradora {
 
     public void setEmail(String _Email)
     {
-        email = _Email;
+        this.email = _Email;
     }
 
     public String getEndereco()
@@ -60,20 +60,20 @@ public class Seguradora {
 
     public void setEndereco(String _Endereco)
     {
-        endereco = _Endereco;
+        this.endereco = _Endereco;
     }
 
     //Métodos
-    public boolean cadastrarCliente(Cliente _Cliente)
+    public boolean cadastrarCliente(Cliente cliente)
     {
-        listaClientes.add(_Cliente);
+        listaClientes.add(cliente);
         System.out.println("\nCliente adicionado com sucesso!");
         return true;
     }
 
-    public boolean removerCliente(String _Dados)
+    public boolean removerCliente(String dados)
     {
-        String dados = _Dados.replaceAll("[^0-9]", "");
+        dados = dados.replaceAll("[^0-9]", "");
         for (Cliente cliente : listaClientes) {
             if (cliente instanceof ClientePF && ((ClientePF)cliente).getCpf().equals(dados))
             {
@@ -92,27 +92,27 @@ public class Seguradora {
         return false;
     }
 
-    public void listarClientes(String _TipoCliente)
+    public void listarClientes(String tipoCliente)
     {
         for (Cliente cliente : listaClientes) {
-            if (_TipoCliente.equals("PF") && cliente instanceof ClientePF)
+            if (tipoCliente.equals("PF") && cliente instanceof ClientePF)
             {
                 System.out.println(cliente.ToString());
             }
-            else if (_TipoCliente.equals("PJ") && cliente instanceof ClientePJ)
+            else if (tipoCliente.equals("PJ") && cliente instanceof ClientePJ)
             {
                 System.out.println(cliente.ToString());
             }
-            else if (_TipoCliente.equals("x"))
+            else if (tipoCliente.equals("x"))
             {
                 System.out.println(cliente.ToString());
             }
         }
     }
 
-    public boolean gerarSinistro(String _Endereco, String _PlacaVeiculo, String _Dados, LocalDate _Data)
+    public boolean gerarSinistro(String endereco, String placaVeiculo, String dados, LocalDate data)
     {
-        String dados = _Dados.replaceAll("[^0-9]", "");
+        dados = dados.replaceAll("[^0-9]", "");
         for (Cliente cliente : listaClientes)
         {
             if (cliente instanceof ClientePF && ((ClientePF)cliente).getCpf().equals(dados) ||
@@ -120,9 +120,9 @@ public class Seguradora {
             {
                 for (Veiculo veiculo : cliente.getListaVeiculos())
                 {
-                    if (veiculo.getPlaca().equals(_PlacaVeiculo))
+                    if (veiculo.getPlaca().equals(placaVeiculo))
                     {
-                        Sinistro sinistro = new Sinistro(_Data, _Endereco, this, veiculo, cliente);
+                        Sinistro sinistro = new Sinistro(data, endereco, this, veiculo, cliente);
                         listaSinistros.add(sinistro);
                         System.out.println("\nSinistro gerado com sucesso!");
                         return true;
@@ -134,9 +134,9 @@ public class Seguradora {
         return false;
     }
 
-    public boolean visualizarSinistro(String _Dados)
+    public boolean visualizarSinistro(String dados)
     {
-        String dados = _Dados.replaceAll("[^0-9]", "");
+        dados = dados.replaceAll("[^0-9]", "");
         for (Sinistro sinistro : listaSinistros) {
             if (sinistro.getCliente() instanceof ClientePF && ((ClientePF)sinistro.getCliente()).getCpf().equals(dados) ||
                 sinistro.getCliente() instanceof ClientePJ && ((ClientePJ)sinistro.getCliente()).getCnpj().equals(dados))

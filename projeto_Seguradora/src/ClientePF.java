@@ -3,6 +3,7 @@ import java.time.LocalDate;
 
 public class ClientePF extends Cliente
 {
+    //Propriedades
     private final String cpf;
     private String educacao;
     private String genero;
@@ -11,17 +12,17 @@ public class ClientePF extends Cliente
     private LocalDate dataLicenca;
     
     //Construtor
-    public ClientePF(String _Nome, String _Endereco, ArrayList<Veiculo> _ListaVeiculos,
-                    String _Cpf, String _Educacao, String _Genero, String _ClasseEconomica,
-                    LocalDate _DataNascimento, LocalDate _DataLicenca)
+    public ClientePF(String nome, String endereco, ArrayList<Veiculo> listaVeiculos,
+                    String cpf, String educacao, String genero, String classeEconomica,
+                    LocalDate dataNascimento, LocalDate dataLicenca)
     {
-        super(_Nome, _Endereco, _ListaVeiculos);
-        cpf = _Cpf.replaceAll("[^0-9]", "");
-        educacao = _Educacao;
-        genero = _Genero;
-        classeEconomica = _ClasseEconomica;
-        dataNascimento = _DataNascimento;
-        dataLicenca = _DataLicenca;
+        super(nome, endereco, listaVeiculos);
+        this.cpf = cpf.replaceAll("[^0-9]", "");
+        this.educacao = educacao;
+        this.genero = genero;
+        this.classeEconomica = classeEconomica;
+        this.dataNascimento = dataNascimento;
+        this.dataLicenca = dataLicenca;
     }
 
     //Getters e Setters
@@ -35,9 +36,9 @@ public class ClientePF extends Cliente
         return educacao;
     }
 
-    public void setEducacao(String _Educacao)
+    public void setEducacao(String educacao)
     {
-        educacao = _Educacao;
+        this.educacao = educacao;
     }
 
     public String getGenero()
@@ -45,9 +46,9 @@ public class ClientePF extends Cliente
         return genero;
     }
 
-    public void setGenero(String _Genero)
+    public void setGenero(String genero)
     {
-        genero = _Genero;
+        this.genero = genero;
     }
 
     public String getClasseEconomica()
@@ -55,9 +56,9 @@ public class ClientePF extends Cliente
         return classeEconomica;
     }
 
-    public void setClasseEconomica(String _ClasseEconomica)
+    public void setClasseEconomica(String classeEconomica)
     {
-        classeEconomica = _ClasseEconomica;
+        this.classeEconomica = classeEconomica;
     }
 
     public LocalDate getDataNascimento()
@@ -65,9 +66,9 @@ public class ClientePF extends Cliente
         return dataNascimento;
     }
 
-    public void setDataNascimento(LocalDate _DataNascimento)
+    public void setDataNascimento(LocalDate dataNascimento)
     {
-        dataNascimento = _DataNascimento;
+        this.dataNascimento = dataNascimento;
     }
 
     public LocalDate getDataLicenca()
@@ -75,27 +76,21 @@ public class ClientePF extends Cliente
         return dataLicenca;
     }
 
-    public void setDataLicenca(LocalDate _DataLicenca)
+    public void setDataLicenca(LocalDate dataLicenca)
     {
-        dataLicenca = _DataLicenca;
+        this.dataLicenca = dataLicenca;
     }
 
     //Métodos
-    @Override
-    public String ToString()
+    private boolean checarDigitos(String cpf)
     {
-        return "\n---CLIENTE---\nNome: %s\nCPF: %s\nEndereco: %s".formatted(getNome(), cpf, getEndereco()); 
-    }
-
-    private boolean checarDigitos(String _Cpf)
-    {
-        if (_Cpf.length() != 11)
+        if (cpf.length() != 11)
         {
             return false;
         }
-        for (int index = 1; index < _Cpf.length(); index++)
+        for (int index = 1; index < cpf.length(); index++)
         {
-            if (_Cpf.charAt(0) != _Cpf.charAt(index))
+            if (cpf.charAt(0) != cpf.charAt(index))
             {
                 return true;
             }
@@ -103,46 +98,52 @@ public class ClientePF extends Cliente
         return false;
     }
 
-    private boolean calcularVerificadores(String _Cpf)
+    private boolean calcularVerificadores(String cpf)
     {
-        int soma_1 = 0, soma_2 = 0;
-        char verificador_1, verificador_2;
+        int soma1 = 0, soma2 = 0;
+        char verificador1, verificador2;
         for (int index = 0; index < 9; index++)
         {
-            soma_1 += (10 - index) * (_Cpf.charAt(index) - 48);
-            soma_2 += (10 - index) * (_Cpf.charAt(index + 1) - 48);
+            soma1 += (10 - index) * (cpf.charAt(index) - 48);
+            soma2 += (10 - index) * (cpf.charAt(index + 1) - 48);
         }
-        if (soma_1 % 11 == 0 || soma_1 % 11 == 1)
+        if (soma1 % 11 == 0 || soma1 % 11 == 1)
         {
-            verificador_1 = '0';
+            verificador1 = '0';
         }
         else 
         {
-            verificador_1 = (char)(11 - soma_1 % 11 + 48);
+            verificador1 = (char)(11 - soma1 % 11 + 48);
         }
-        if (soma_2 % 11 == 0 || soma_2 % 11 == 1)
+        if (soma2 % 11 == 0 || soma2 % 11 == 1)
         {
-            verificador_2 = '0';
+            verificador2 = '0';
         }
         else 
         {
-            verificador_2 = (char)(11 - soma_2 % 11 + 48);
+            verificador2 = (char)(11 - soma2 % 11 + 48);
         }
-        if (verificador_1 != _Cpf.charAt(9) || verificador_2 != _Cpf.charAt(10))
+        if (verificador1 != cpf.charAt(9) || verificador2 != cpf.charAt(10))
         {
             return false;
         }
         return true;
     }
 
-    public boolean validarCPF(String _Cpf)
+    public boolean validarCPF(String cpf)
     {
-        boolean onze_digitos_diferentes = checarDigitos(_Cpf);
-        if (onze_digitos_diferentes)
+        boolean onzeDigitosDiferentes = checarDigitos(cpf);
+        if (onzeDigitosDiferentes)
         {
-            boolean digitos_verificadores = calcularVerificadores(_Cpf);
-            return digitos_verificadores;
+            boolean digitosVerificadores = calcularVerificadores(cpf);
+            return digitosVerificadores;
         }
         return false;
+    }
+
+    @Override
+    public String ToString()
+    {
+        return "\n---CLIENTE---\nNome: %s\nCPF: %s\nEndereco: %s".formatted(getNome(), cpf, getEndereco()); 
     }
 }

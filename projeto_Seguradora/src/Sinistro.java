@@ -1,7 +1,7 @@
 import java.time.LocalDate;
 
-public class Sinistro {
-
+public class Sinistro
+{
     //Propriedades
     private static int count = 0;
     private final int id;
@@ -12,13 +12,13 @@ public class Sinistro {
     private Cliente cliente;
 
     //Construtor
-    public Sinistro(LocalDate _Data, String _Endereco, Seguradora _Seguradora, Veiculo _Veiculo, Cliente _Cliente)
+    public Sinistro(LocalDate data, String endereco, Seguradora seguradora, Veiculo veiculo, Cliente cliente)
     {
-        data = _Data;
-        endereco = _Endereco;
-        seguradora = _Seguradora;
-        veiculo = _Veiculo;
-        cliente = _Cliente;
+        this.data = data;
+        this.endereco = endereco;
+        this.seguradora = seguradora;
+        this.veiculo = veiculo;
+        this.cliente = cliente;
         ++count;
         id = count;
     }
@@ -36,7 +36,7 @@ public class Sinistro {
 
     public void setData(LocalDate _Data)
     {
-        data = _Data;
+        this.data = _Data;
     }
 
     public String getEndereco()
@@ -46,7 +46,7 @@ public class Sinistro {
 
     public void setEndereco(String _Endereco)
     {
-        endereco = _Endereco;
+        this.endereco = _Endereco;
     }
     
     public Seguradora getSeguradora()
@@ -56,7 +56,7 @@ public class Sinistro {
 
     public void setSeguradora(Seguradora _Seguradora)
     {
-        seguradora = _Seguradora;
+        this.seguradora = _Seguradora;
     }
 
     public Veiculo getVeiculo()
@@ -66,7 +66,7 @@ public class Sinistro {
 
     public void setVeiculo(Veiculo _Veiculo)
     {
-        veiculo = _Veiculo;
+        this.veiculo = _Veiculo;
     }
 
     public Cliente getCliente()
@@ -76,7 +76,7 @@ public class Sinistro {
 
     public void setCliente(Cliente _Cliente)
     {
-        cliente = _Cliente;
+        this.cliente = _Cliente;
     }
 
     //Métodos

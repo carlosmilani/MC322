@@ -1,5 +1,5 @@
-public class Veiculo {
-
+public class Veiculo
+{
     //Propriedades
     private String placa;
     private String marca;
@@ -7,12 +7,12 @@ public class Veiculo {
     private int anoFabricacao;
 
     //Construtor
-    public Veiculo(String _Placa, String _Marca, String _Modelo, int _AnoFabricacao)
+    public Veiculo(String placa, String marca, String modelo, int anoFabricacao)
     {
-        placa = _Placa;
-        marca = _Marca;
-        modelo = _Modelo;
-        anoFabricacao = _AnoFabricacao;
+        this.placa = placa;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.anoFabricacao = anoFabricacao;
     }
 
     //Getters e Setters
@@ -21,9 +21,9 @@ public class Veiculo {
         return placa;
     }
 
-    public void setPlaca(String _Placa)
+    public void setPlaca(String placa)
     {
-        placa = _Placa;
+        this.placa = placa;
     }
 
     public String getMarca()
@@ -31,9 +31,9 @@ public class Veiculo {
         return marca;
     }
 
-    public void setMarca(String _Marca)
+    public void setMarca(String marca)
     {
-        marca = _Marca;
+        this.marca = marca;
     }
 
     public String getModelo()
@@ -41,9 +41,9 @@ public class Veiculo {
         return modelo;
     }
 
-    public void setModelo(String _Modelo)
+    public void setModelo(String modelo)
     {
-        modelo = _Modelo;
+        this.modelo = modelo;
     }
 
     public int getAnoFabricacao()
@@ -51,9 +51,9 @@ public class Veiculo {
         return anoFabricacao;
     }
 
-    public void setAnoFabricacao(int _AnoFabricacao)
+    public void setAnoFabricacao(int anoFabricacao)
     {
-        anoFabricacao = _AnoFabricacao;
+        this.anoFabricacao = anoFabricacao;
     }
 
     //Métodos
