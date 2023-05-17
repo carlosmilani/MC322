@@ -59,6 +59,7 @@ public class Main
         listaClientes.add(c1);
         listaClientes.add(c3);
 
+        //Laço que mantém o menu principal aberto até que o usuário saia do programa.
         Scanner scanner = new Scanner(System.in);
         MenuOperacoes operacao;
 		do
@@ -70,6 +71,7 @@ public class Main
         while(operacao != MenuOperacoes.SAIR);
     }
 
+    //Método estático que imprime o menu principal na tela.
     private static void exibirMenuPrincipal()
     {
         MenuOperacoes menuOperacoes[] = MenuOperacoes.values();
@@ -80,6 +82,7 @@ public class Main
         }
     }
 
+    //Método estático que imprime o sub menu na tela.
     private static void exibirSubMenu(MenuOperacoes operacao)
     {
         SubMenuOperacoes subMenu[] = operacao.getSubMenuOperacoes();
@@ -90,6 +93,7 @@ public class Main
         }
     }
 
+    //Método que lê as operações do menu principal por entrada do teclado.
     private static MenuOperacoes lerOperacaoMenuPrincipal(Scanner scanner)
     {
         System.out.print("Digite uma operação: ");
@@ -105,6 +109,7 @@ public class Main
         return operacao;
     }
 
+    //Método que lê as operações do sub menu por entrada do teclado.
     private static SubMenuOperacoes lerOperacaoSubMenu(MenuOperacoes operacao, Scanner scanner)
     {
         System.out.print("Digite uma operação: ");
@@ -120,6 +125,7 @@ public class Main
         return subOperacao;
     }
 
+    //Método que executa as operações do menu principal.
     private static void executarOperacaoMenuPrincipal(ArrayList<Seguradora> listaSeguradoras, ArrayList<Cliente> listaClientes, MenuOperacoes operacao, Scanner scanner)
     {
         Seguradora seguradora;
@@ -149,6 +155,7 @@ public class Main
         }
     }
 
+    //Método que executa as operações do sub menu.
     private static void executarOperacaoSubMenu(ArrayList<Seguradora> listaSeguradoras, ArrayList<Cliente> listaClientes, SubMenuOperacoes subOperacao, Scanner scanner)
     {
         Seguradora seguradora;
@@ -254,6 +261,7 @@ public class Main
         }
     }
 
+    //Método que abre o sub menu.
     private static void executarSubMenu(ArrayList<Seguradora> listaSeguradoras, ArrayList<Cliente> listaClientes, MenuOperacoes operacao, Scanner scanner)
     {
         SubMenuOperacoes subOperacao;
@@ -363,6 +371,7 @@ public class Main
         return listaVeiculos;
     }
 
+    //Método estático que gera um sinistro por entradas do teclado.
     private static boolean gerarSinistro(Seguradora seguradora, Scanner scanner)
     {
         System.out.print("\nEndereço da ocorrência: ");
@@ -478,6 +487,7 @@ public class Main
         return listaClientes.get(index);
     }
 
+    //Método estático que lista todos os veículos de um determinado cliente.
     private static void listarVeiculos(Cliente cliente)
     {
         for (Veiculo veiculos : cliente.getListaVeiculos())
