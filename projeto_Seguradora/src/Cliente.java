@@ -5,7 +5,8 @@ public class Cliente
     //Propriedades
     private String nome;
     private String endereco;
-    private ArrayList<Veiculo> listaVeiculos;    
+    private ArrayList<Veiculo> listaVeiculos;
+    private double valorSeguro;
 
     //Construtor
     public Cliente(String nome, String endereco, ArrayList<Veiculo> listaVeiculos)
@@ -13,6 +14,7 @@ public class Cliente
         this.nome = nome;
         this.endereco = endereco;
         this.listaVeiculos = listaVeiculos;
+        valorSeguro = 0;
     }
 
     //Getters e Setters
@@ -46,9 +48,24 @@ public class Cliente
         this.listaVeiculos = listaVeiculos;
     }
 
+    public double getValorSeguro()
+    {
+        return valorSeguro;
+    }
+
+    public void setValorSeguro(double valorSeguro)
+    {
+        this.valorSeguro = valorSeguro;
+    }
+
     //Métodos
     public String ToString()
     {
         return "\n---CLIENTE---\nNome: %s\nEndereco: %s".formatted(nome, endereco);
+    }
+
+    public double calcularScore()
+    {
+        return 0;
     }
 }

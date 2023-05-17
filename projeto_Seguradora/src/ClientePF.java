@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.time.LocalDate;
+import java.time.Period;
 
 public class ClientePF extends Cliente
 {
@@ -82,68 +83,29 @@ public class ClientePF extends Cliente
     }
 
     //Métodos
-    private boolean checarDigitos(String cpf)
-    {
-        if (cpf.length() != 11)
-        {
-            return false;
-        }
-        for (int index = 1; index < cpf.length(); index++)
-        {
-            if (cpf.charAt(0) != cpf.charAt(index))
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private boolean calcularVerificadores(String cpf)
-    {
-        int soma1 = 0, soma2 = 0;
-        char verificador1, verificador2;
-        for (int index = 0; index < 9; index++)
-        {
-            soma1 += (10 - index) * (cpf.charAt(index) - 48);
-            soma2 += (10 - index) * (cpf.charAt(index + 1) - 48);
-        }
-        if (soma1 % 11 == 0 || soma1 % 11 == 1)
-        {
-            verificador1 = '0';
-        }
-        else 
-        {
-            verificador1 = (char)(11 - soma1 % 11 + 48);
-        }
-        if (soma2 % 11 == 0 || soma2 % 11 == 1)
-        {
-            verificador2 = '0';
-        }
-        else 
-        {
-            verificador2 = (char)(11 - soma2 % 11 + 48);
-        }
-        if (verificador1 != cpf.charAt(9) || verificador2 != cpf.charAt(10))
-        {
-            return false;
-        }
-        return true;
-    }
-
-    public boolean validarCPF(String cpf)
-    {
-        boolean onzeDigitosDiferentes = checarDigitos(cpf);
-        if (onzeDigitosDiferentes)
-        {
-            boolean digitosVerificadores = calcularVerificadores(cpf);
-            return digitosVerificadores;
-        }
-        return false;
-    }
-
     @Override
     public String ToString()
     {
         return "\n---CLIENTE---\nNome: %s\nCPF: %s\nEndereco: %s".formatted(getNome(), cpf, getEndereco()); 
+    }
+
+    @Override
+    public double calcularScore()
+    {
+        LocalDate hoje = LocalDate.now();
+        int idade = Period.between(dataNascimento, hoje).getYears();
+        if (18 <= idade && idade < 30)
+        {
+            return CalcSeguro.VALOR_BASE.getMultiplicador() * CalcSeguro.FATOR_18_30.getMultiplicador() * getListaVeiculos().size();
+        }
+        else if (30 <= idade && idade < 60)
+        {
+            return CalcSeguro.VALOR_BASE.getMultiplicador() * CalcSeguro.FATOR_30_60.getMultiplicador() * getListaVeiculos().size();
+        }
+        else if (60 <= idade && idade < 90)
+        {
+            return CalcSeguro.VALOR_BASE.getMultiplicador() * CalcSeguro.FATOR_60_90.getMultiplicador() * getListaVeiculos().size();
+        }
+        return 0;
     }
 }

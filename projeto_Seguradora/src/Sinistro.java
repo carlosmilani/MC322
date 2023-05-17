@@ -34,9 +34,9 @@ public class Sinistro
         return data;
     }
 
-    public void setData(LocalDate _Data)
+    public void setData(LocalDate data)
     {
-        this.data = _Data;
+        this.data = data;
     }
 
     public String getEndereco()
@@ -44,9 +44,9 @@ public class Sinistro
         return endereco;
     }
 
-    public void setEndereco(String _Endereco)
+    public void setEndereco(String endereco)
     {
-        this.endereco = _Endereco;
+        this.endereco = endereco;
     }
     
     public Seguradora getSeguradora()
@@ -54,9 +54,9 @@ public class Sinistro
         return seguradora;
     }
 
-    public void setSeguradora(Seguradora _Seguradora)
+    public void setSeguradora(Seguradora seguradora)
     {
-        this.seguradora = _Seguradora;
+        this.seguradora = seguradora;
     }
 
     public Veiculo getVeiculo()
@@ -64,9 +64,9 @@ public class Sinistro
         return veiculo;
     }
 
-    public void setVeiculo(Veiculo _Veiculo)
+    public void setVeiculo(Veiculo veiculo)
     {
-        this.veiculo = _Veiculo;
+        this.veiculo = veiculo;
     }
 
     public Cliente getCliente()
@@ -74,9 +74,9 @@ public class Sinistro
         return cliente;
     }
 
-    public void setCliente(Cliente _Cliente)
+    public void setCliente(Cliente cliente)
     {
-        this.cliente = _Cliente;
+        this.cliente = cliente;
     }
 
     //Métodos
