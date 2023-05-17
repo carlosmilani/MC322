@@ -430,20 +430,9 @@ public class Main
             scanner.nextLine();
         }
         Cliente c2 = seguradora.getListaClientes().get(index2);
-        ArrayList<Veiculo> listaVeiculos = c1.getListaVeiculos();
-        // Verificar se isso funciona
-        
+        ArrayList<Veiculo> listaVeiculos = c1.getListaVeiculos();        
         c2.getListaVeiculos().addAll(listaVeiculos);
-        
-        //
-        if (c1 instanceof ClientePF)
-        {
-            seguradora.removerCliente(((ClientePF)c1).getCpf());
-        }
-        else if (c1 instanceof ClientePJ)
-        {
-            seguradora.removerCliente(((ClientePJ)c1).getCnpj());
-        }
+        c1.getListaVeiculos().clear();
         seguradora.calcularPrecoSeguroCliente(c2);
         System.out.println("\nSeguro transferido com sucesso!");
         return true;

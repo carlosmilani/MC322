@@ -167,19 +167,23 @@ public class Seguradora
     public boolean removerSinistro(String dados)
     {
         int sinistros_removidos = 0;
-        for (Sinistro sinistro : listaSinistros)
+        int index = 0;
+        while (index < listaSinistros.size())
         {
-            Cliente cliente = sinistro.getCliente();
+            Cliente cliente = listaSinistros.get(index).getCliente();
             if (cliente instanceof ClientePF && ((ClientePF)cliente).getCpf().equals(dados))
             {
-                listaSinistros.remove(sinistro);
+                listaSinistros.remove(index);
                 sinistros_removidos++;
+                index--;
             }
             else if (cliente instanceof ClientePJ && ((ClientePJ)cliente).getCnpj().equals(dados))
             {
-                listaSinistros.remove(sinistro);
+                listaSinistros.remove(index);
                 sinistros_removidos++;
+                index--;
             }
+            index++;
         }
         if (sinistros_removidos > 0)
         {
