@@ -32,7 +32,7 @@ public enum MenuOperacoes
     CALCULAR_RECEITA_SEGURADORA("Calcular Receita", new SubMenuOperacoes[] {SubMenuOperacoes.VOLTAR}),
     SAIR("Sair", new SubMenuOperacoes[] {});
 
-    //Propriedade
+    //Propriedades
     private final String descricao;
 
     private final SubMenuOperacoes[] subMenuOperacoes;

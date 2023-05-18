@@ -18,7 +18,7 @@ public class ClientePF extends Cliente
                     LocalDate dataNascimento, LocalDate dataLicenca)
     {
         super(nome, endereco, listaVeiculos);
-        this.cpf = cpf.replaceAll("[^0-9]", "");
+        this.cpf = cpf;
         this.educacao = educacao;
         this.genero = genero;
         this.classeEconomica = classeEconomica;

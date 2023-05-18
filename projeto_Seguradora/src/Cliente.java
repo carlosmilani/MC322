@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Cliente
+public abstract class Cliente
 {
     //Propriedades
     private String nome;
@@ -64,8 +64,5 @@ public class Cliente
         return "\n---CLIENTE---\nNome: %s\nEndereco: %s".formatted(nome, endereco);
     }
 
-    public double calcularScore()
-    {
-        return 0;
-    }
+    public abstract double calcularScore();
 }

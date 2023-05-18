@@ -12,7 +12,7 @@ public class ClientePJ extends Cliente
     public ClientePJ(String nome, String endereco, ArrayList<Veiculo> listaVeiculos, String cnpj, LocalDate dataFundacao, int qtdeFuncionarios)
     {
         super(nome, endereco, listaVeiculos);
-        this.cnpj = cnpj.replaceAll("[^0-9]", "");
+        this.cnpj = cnpj;
         this.dataFundacao = dataFundacao;
         this.qtdeFuncionarios = qtdeFuncionarios;
     }
