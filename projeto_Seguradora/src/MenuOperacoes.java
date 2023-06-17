@@ -5,6 +5,8 @@ public enum MenuOperacoes
     {
         SubMenuOperacoes.CADASTRAR_CLIENTE_PF,
         SubMenuOperacoes.CADASTRAR_CLIENTE_PJ,
+        SubMenuOperacoes.CADASTRAR_CONDUTOR,
+        SubMenuOperacoes.CADASTRAR_FROTA,
         SubMenuOperacoes.CADASTRAR_VEICULO,
         SubMenuOperacoes.CADASTRAR_SEGURADORA,
         SubMenuOperacoes.VOLTAR
@@ -14,6 +16,8 @@ public enum MenuOperacoes
         SubMenuOperacoes.LISTAR_CLIENTES_PF,
         SubMenuOperacoes.LISTAR_CLIENTES_PJ,
         SubMenuOperacoes.LISTAR_TODOS_CLIENTES,
+        SubMenuOperacoes.LISTAR_SEGUROS_SEGURADORA,
+        SubMenuOperacoes.LISTAR_SEGUROS_CLIENTE,
         SubMenuOperacoes.LISTAR_SINISTROS_SEGURADORA,
         SubMenuOperacoes.LISTAR_SINISTROS_CLIENTE,
         SubMenuOperacoes.LISTAR_VEICULOS_SEGURADORA,
@@ -23,12 +27,15 @@ public enum MenuOperacoes
     REMOVER("Remover", new SubMenuOperacoes[]
     {
         SubMenuOperacoes.REMOVER_CLIENTE,
+        SubMenuOperacoes.REMOVER_CONDUTOR,
         SubMenuOperacoes.REMOVER_VEICULO,
+        SubMenuOperacoes.REMOVER_SEGURO,
         SubMenuOperacoes.REMOVER_SINISTRO,
         SubMenuOperacoes.VOLTAR
     }),
     GERAR_SINISTRO("Gerar Sinistro", new SubMenuOperacoes[] {SubMenuOperacoes.VOLTAR}),
-    TRANSFERIR_SEGURO("Transferir Seguro", new SubMenuOperacoes[] {SubMenuOperacoes.VOLTAR}),
+    GERAR_SEGURO("Gerar Seguro", new SubMenuOperacoes[] {SubMenuOperacoes.VOLTAR}),
+    ATUALIZAR_FROTA("Atualizar frota", new SubMenuOperacoes[] {SubMenuOperacoes.VOLTAR}),
     CALCULAR_RECEITA_SEGURADORA("Calcular Receita", new SubMenuOperacoes[] {SubMenuOperacoes.VOLTAR}),
     SAIR("Sair", new SubMenuOperacoes[] {});
 

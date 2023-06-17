@@ -7,18 +7,16 @@ public class Sinistro
     private final int id;
     private LocalDate data;
     private String endereco;
-    private Seguradora seguradora;
-    private Veiculo veiculo;
-    private Cliente cliente;
+    private Condutor condutor;
+    private Seguro seguro;
 
     //Construtor
-    public Sinistro(LocalDate data, String endereco, Seguradora seguradora, Veiculo veiculo, Cliente cliente)
+    public Sinistro(LocalDate data, String endereco, Condutor condutor, Seguro seguro)
     {
         this.data = data;
         this.endereco = endereco;
-        this.seguradora = seguradora;
-        this.veiculo = veiculo;
-        this.cliente = cliente;
+        this.condutor = condutor;
+        this.seguro = seguro;
         ++count;
         id = count;
     }
@@ -48,40 +46,30 @@ public class Sinistro
     {
         this.endereco = endereco;
     }
+
+    public Condutor getCondutor()
+    {
+        return condutor;
+    }
+
+    public void setCondutor(Condutor condutor)
+    {
+        this.condutor = condutor;
+    }
     
-    public Seguradora getSeguradora()
+    public Seguro getSeguro()
     {
-        return seguradora;
+        return seguro;
     }
 
-    public void setSeguradora(Seguradora seguradora)
+    public void setSeguro(Seguro seguro)
     {
-        this.seguradora = seguradora;
-    }
-
-    public Veiculo getVeiculo()
-    {
-        return veiculo;
-    }
-
-    public void setVeiculo(Veiculo veiculo)
-    {
-        this.veiculo = veiculo;
-    }
-
-    public Cliente getCliente()
-    {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente)
-    {
-        this.cliente = cliente;
+        this.seguro = seguro;
     }
 
     //Métodos
     public String ToString()
     {
-        return "\n---SINISTRO---\nID: %d\nData: %s\nEndereco: %s\nSeguradora: %s\nVeiculo: %s\nCliente: %s".formatted(id, data.toString(), endereco, seguradora.getNome(), veiculo.getModelo(), cliente.getNome());
+        return "\n---SINISTRO---\nID: %d\nData: %s\nEndereco: %s\nCondutor: %s\nID do seguro: %s".formatted(id, data.toString(), endereco, condutor.getNome(), seguro.getId());
     }
 }

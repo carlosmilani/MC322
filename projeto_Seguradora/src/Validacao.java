@@ -1,5 +1,6 @@
 public class Validacao
 {
+    //Métodos
     public static boolean validarCPF(String cpf)
     {
         if (cpf.length() == 11)

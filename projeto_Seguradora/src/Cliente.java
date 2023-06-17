@@ -4,17 +4,17 @@ public abstract class Cliente
 {
     //Propriedades
     private String nome;
+    private String telefone;
     private String endereco;
-    private ArrayList<Veiculo> listaVeiculos;
-    private double valorSeguro;
+    private String email;
 
     //Construtor
-    public Cliente(String nome, String endereco, ArrayList<Veiculo> listaVeiculos)
+    public Cliente(String nome, String telefone, String endereco, String email)
     {
         this.nome = nome;
+        this.telefone = telefone;
         this.endereco = endereco;
-        this.listaVeiculos = listaVeiculos;
-        valorSeguro = 0;
+        this.email = email;
     }
 
     //Getters e Setters
@@ -28,6 +28,16 @@ public abstract class Cliente
         this.nome = nome;
     }
 
+    public String getTelefone()
+    {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone)
+    {
+        this.telefone = telefone;
+    }
+
     public String getEndereco()
     {
         return endereco;
@@ -38,31 +48,50 @@ public abstract class Cliente
         this.endereco = endereco;
     }
 
-    public ArrayList<Veiculo> getListaVeiculos()
+    public String getEmail()
     {
-        return listaVeiculos;
+        return email;
     }
 
-    public void setListaVeiculos(ArrayList<Veiculo> listaVeiculos)
+    public void setEmail(String email)
     {
-        this.listaVeiculos = listaVeiculos;
-    }
-
-    public double getValorSeguro()
-    {
-        return valorSeguro;
-    }
-
-    public void setValorSeguro(double valorSeguro)
-    {
-        this.valorSeguro = valorSeguro;
+        this.email = email;
     }
 
     //Métodos
-    public String ToString()
+    public abstract String ToString();
+
+    public abstract boolean cadastrarVeiculo();
+
+    public abstract boolean removerVeiculo(Seguradora seguradora);
+
+    public abstract boolean listarVeiculos();
+
+    public static boolean listarSegurosCliente(ArrayList<Seguro> segurosCliente)
     {
-        return "\n---CLIENTE---\nNome: %s\nEndereco: %s".formatted(nome, endereco);
+        if (segurosCliente.size() == 0)
+        {
+            System.out.println("\nEste cliente não possui nenhum seguro.");
+            return false;
+        }
+        for (Seguro seguro : segurosCliente)
+        {
+            System.out.println(seguro.ToString());    
+        }
+        return true;
     }
 
-    public abstract double calcularScore();
+    public static boolean listarSinistrosCliente(ArrayList<Sinistro> sinistrosCliente)
+    {
+        if (sinistrosCliente.size() == 0)
+        {
+            System.out.println("\nEste cliente não possui nenhum sinistro.");
+            return false;
+        }
+        for (Sinistro sinistro : sinistrosCliente)
+        {
+            System.out.println(sinistro.ToString());    
+        }
+        return true;
+    }
 }
